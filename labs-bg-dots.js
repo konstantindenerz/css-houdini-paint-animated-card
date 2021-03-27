@@ -7,7 +7,6 @@ registerPaint('labs-bg-dots', class {
         const color = properties.get('--dot-color');
         const radius = properties.get('--dot-radius');
         const distance = 50;
-        console.log(color, radius, arguments)
 
         for (let x = 0; x < Math.round(width / distance); x++) {
             for (let y = 0; y < Math.round(height / distance); y++) {
