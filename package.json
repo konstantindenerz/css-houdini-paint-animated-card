@@ -1,0 +1,20 @@
+{
+  "name": "labs-future-cards",
+  "version": "1.0.0",
+  "description": "A prototype of animated card powered by CSS Houdini's Paint API.",
+  "main": "labs-bg-dots.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konstantindenerz/css-houdini-paint-animated-card.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konstantindenerz/css-houdini-paint-animated-card/issues"
+  },
+  "homepage": "https://github.com/konstantindenerz/css-houdini-paint-animated-card#readme"
+}
