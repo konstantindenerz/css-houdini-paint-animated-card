@@ -2,7 +2,6 @@
 <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oxanium&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/css-paint-polyfill"></script>
     <script>
         if ('paintWorklet') {
             CSS.paintWorklet.addModule('labs-future-card.js');
@@ -31,18 +30,24 @@
             --primary-color-s: 100%;
             --primary-color-l: 84%;
             --primary-color-hsl: var(--primary-color-h), var(--primary-color-s), var(--primary-color-l);
-            --dot-color: hsla(var(--primary-color-hsl), .04);
+            --dot-color: hsla(var(--primary-color-hsl), .1);
             --dot-radius: 2;
         }
 
         body {
-            background: paint(labs-bg-dots), #1B1C1D;
+            background: paint(labs-bg-dots), #1b1c1d;
             font-family: 'Oxanium', cursive;
             font-size: 50px;
             color: hsla(var(--primary-color-hsl), .9);
             display: grid;
             place-items: center;
             height: 100%;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 60px;
         }
 
         .card {
@@ -59,6 +64,12 @@
             width: calc(var(--max-card-width) * 1px);
             aspect-ratio: 1 / .6;
             animation: card-show .5s ease-in-out forwards, content-show .5s .4s ease-in-out forwards;
+        }
+
+        .card.large {
+            --max-card-width: 760;
+            width: calc(var(--max-card-width) * 1px);
+            grid-column: 1 / span 2;
         }
 
         @keyframes card-show {
@@ -89,21 +100,14 @@
                 color: inherit;
             }
         }
+
     </style>
 </head>
 <body>
-<div id="card" class="card show">
-    I feel like Houdini <br>✨🧙‍♂️️
+<div class="cards">
+    <div class="card">I feel like Houdini <br>✨🧙‍♂️️</div>
+    <div class="card">I feel like Houdini <br>✨🧙‍♂️️</div>
+    <div class="card large">I feel like Houdini <br>✨🧙‍♂️️</div>
 </div>
-<script>
-    const card = document.getElementById('card');
-    card.addEventListener('click', () => {
-        if (card.classList.contains('show')) {
-            card.classList.remove('show')
-        } else {
-            card.classList.add('show')
-        }
-    })
-</script>
 </body>
 </html>

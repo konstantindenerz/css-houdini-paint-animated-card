@@ -22,6 +22,16 @@ registerPaint('labs-future-card', class {
         ctx.stroke();
 
         ctx.beginPath();
+        ctx.moveTo(width - d * 2 - 5, 10);
+        ctx.lineTo(width - d, 10);
+        ctx.lineTo(width - 7, d + 5);
+        ctx.lineTo(width - 7, d * 2 + 10);
+        ctx.filter = 'blur(10px)';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.filter = 'blur(0)';
+
+        ctx.beginPath();
         ctx.moveTo(width, d * 2);
         ctx.lineTo(width, height);
         ctx.lineWidth = 1;
@@ -35,6 +45,15 @@ registerPaint('labs-future-card', class {
         ctx.lineWidth = 4;
         ctx.stroke();
 
+        ctx.beginPath();
+        ctx.moveTo(d + d , height - 10);
+        ctx.lineTo(d - 5 , height - 10);
+        ctx.lineTo(10, height - d);
+        ctx.lineTo(10, height - d * 2);
+        ctx.lineWidth = 3;
+        ctx.filter = 'blur(10px)'
+        ctx.stroke();
+        ctx.filter = 'blur(0)';
         ctx.beginPath();
         ctx.moveTo(0, height - d * 2);
         ctx.lineTo(0, 0);
