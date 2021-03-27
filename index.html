@@ -1,0 +1,109 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/css-paint-polyfill"></script>
+    <script>
+        if ('paintWorklet') {
+            CSS.paintWorklet.addModule('labs-future-card.js');
+            CSS.paintWorklet.addModule('labs-bg-dots.js');
+        } else {
+            document.body.innerHTML = 'You need support for <a href="https://drafts.css-houdini.org/css-paint-api/">CSS Paint API</a> to view this demo :(';
+        }
+
+        CSS.registerProperty({
+            name: '--card-width',
+            syntax: '<number>',
+            inherits: false,
+            initialValue: '0'
+        });
+        CSS.registerProperty({
+            name: '--card-border-size',
+            syntax: '<number>',
+            inherits: false,
+            initialValue: '20'
+        });
+    </script>
+    <style>
+        :root {
+
+            --primary-color-h: 189;
+            --primary-color-s: 100%;
+            --primary-color-l: 84%;
+            --primary-color-hsl: var(--primary-color-h), var(--primary-color-s), var(--primary-color-l);
+            --dot-color: hsla(var(--primary-color-hsl), .04);
+            --dot-radius: 2;
+        }
+
+        body {
+            background: paint(labs-bg-dots), #1B1C1D;
+            font-family: 'Oxanium', cursive;
+            font-size: 50px;
+            color: hsla(var(--primary-color-hsl), .9);
+            display: grid;
+            place-items: center;
+            height: 100%;
+        }
+
+        .card {
+            --card-width: 40;
+            --max-card-width: 350;
+            --card-border-size: 20;
+            --card-border-color: hsl(var(--primary-color-hsl));
+            --card-background-color: hsla(var(--primary-color-hsl), .04);
+            background: paint(labs-future-card);
+
+            box-sizing: border-box;
+            color: transparent;
+            padding: 1em;
+            width: calc(var(--max-card-width) * 1px);
+            aspect-ratio: 1 / .6;
+            animation: card-show .5s ease-in-out forwards, content-show .5s .4s ease-in-out forwards;
+        }
+
+        @keyframes card-show {
+            from {
+                --card-width: 40;
+            }
+            to {
+                --card-width: var(--max-card-width);
+            }
+        }
+
+        @keyframes content-show {
+            0% {
+                color: transparent;
+                opacity: 1;
+            }
+            20% {
+                opacity: .1;
+            }
+            30% {
+                opacity: 1;
+            }
+            60% {
+                opacity: .1;
+            }
+            100% {
+                opacity: 1;
+                color: inherit;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="card" class="card show">
+    I feel like Houdini <br>✨🧙‍♂️️
+</div>
+<script>
+    const card = document.getElementById('card');
+    card.addEventListener('click', () => {
+        if (card.classList.contains('show')) {
+            card.classList.remove('show')
+        } else {
+            card.classList.add('show')
+        }
+    })
+</script>
+</body>
+</html>
